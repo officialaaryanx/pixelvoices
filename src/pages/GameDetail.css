@@ -1,0 +1,218 @@
+.game-detail {
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.back-button {
+  background-color: #0088ff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: '04b30', Fallback, sans-serif;
+  font-size: 1rem;
+  margin-bottom: 30px;
+  transition: background-color 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1), transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform, box-shadow, background-color;
+}
+
+.back-button:hover {
+  background-color: #006acc;
+  box-shadow: 0 0 12px rgba(0, 136, 255, 0.85);
+  transform: translateY(-1px);
+}
+
+.game-not-found {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.game-not-found h2 {
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  color: #0088ff;
+}
+
+.game-detail-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 30px;
+  border-radius: 10px;
+  border: 2px solid #0088ff;
+  animation: detailEntrance 0.9s ease both;
+  box-shadow: 0 0 16px rgba(0, 136, 255, 0.18);
+}
+
+.game-detail-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.game-detail-image img {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 0 20px #0088ff;
+}
+
+.game-detail-content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #0088ff;
+  font-family: 'Press Start 2P', monospace;
+}
+
+.short-description {
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+  line-height: 1.6;
+  color: #ccc;
+}
+
+.full-description {
+  margin: 30px 0;
+  line-height: 1.8;
+}
+
+.full-description p {
+  margin-bottom: 15px;
+  color: #ddd;
+}
+
+.download-section {
+  margin-top: 40px;
+  padding-top: 30px;
+  border-top: 2px solid #0088ff;
+}
+
+.download-section h3 {
+  font-family: 'Press Start 2P', monospace;
+  margin-bottom: 20px;
+  color: #0088ff;
+}
+
+.platform-links {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.platform-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 25px;
+  background-color: #0088ff;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1), transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform, box-shadow, background-color;
+  font-family: '04b30', Fallback, sans-serif;
+}
+
+.platform-link {
+  animation: buttonGlow 3.2s ease-in-out infinite;
+}
+
+.platform-link:hover {
+  background-color: #006acc;
+  box-shadow: 0 0 15px #0088ff, 0 0 20px rgba(0, 136, 255, 0.35);
+  transform: translateY(-2px);
+}
+
+.platform-link img {
+  height: 30px;
+  width: auto;
+}
+
+.platform-link span {
+  font-weight: bold;
+}
+
+@keyframes detailEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes buttonGlow {
+  0%, 100% {
+    box-shadow: 0 0 0 rgba(0, 136, 255, 0);
+  }
+  50% {
+    box-shadow: 0 0 14px rgba(0, 136, 255, 0.55), 0 0 20px rgba(0, 136, 255, 0.35);
+  }
+}
+
+@media (max-width: 900px) {
+  .game-detail {
+    padding: 30px 16px;
+  }
+
+  .game-detail-container {
+    gap: 28px;
+    padding: 24px;
+  }
+
+  .game-detail-content h1 {
+    font-size: 1.9rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .game-detail-container {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .game-detail-content h1 {
+    font-size: 2rem;
+  }
+
+  .platform-links {
+    flex-direction: column;
+  }
+
+  .platform-link {
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .game-detail {
+    padding: 24px 12px;
+  }
+
+  .game-detail-container {
+    padding: 18px;
+  }
+
+  .game-detail-content h1 {
+    font-size: 1.55rem;
+  }
+
+  .short-description {
+    font-size: 0.98rem;
+  }
+
+  .full-description {
+    margin: 22px 0;
+    font-size: 0.92rem;
+  }
+
+  .download-section {
+    margin-top: 26px;
+    padding-top: 20px;
+  }
+}

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Pixel Voices - Game Developer</title>
+<link rel="shortcut icon" href="https://pixelvoices.com/media/images/favicon.png" type="image/png" />
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<style>
+  @font-face {
+  font-family: '04b30';
+  src: url('04B_30.woff') format('woff'),
+       url('04B_30.ttf')  format('truetype');
+}
+  body {
+    margin: 0;
+    font-family: '04b30', Fallback, sans-serif;
+    background-color: #1c1f26;
+  }
+
+  .site-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #131313;
+    color: white;
+    min-height: 200px;
+    padding: 0 2rem;
+    box-sizing: border-box;
+    box-shadow: 0 0px 50px #0088ff;
+  }
+
+  .logo-container {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    flex-shrink: 0;
+  }
+
+  .logo {
+    height: 120px;
+    width: auto;
+  }
+
+  .header-title {
+    margin: 0;
+    font-size: clamp(2.5rem, 5.5vw, 4rem);
+    font-weight: bolder;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: white;
+    flex-grow: 1;
+    text-align: center;
+    user-select: none;
+    min-width: 0;
+  }
+
+  .pix {
+    color: #0088ff;
+    font-size: clamp(2.6rem, 7vw, 5rem);
+  }
+
+  .email-container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .email-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
+    transition: box-shadow 0.3s ease;
+  }
+
+  .email-icon:hover {
+    box-shadow: 0 0 8px #0088ff;
+  }
+
+  .email-text {
+    font-family: fantasy;
+    margin-left: 10px;
+    color: #ccc;
+    font-size: clamp(0.9rem, 1vw, 1.1rem);
+    user-select: text;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    white-space: nowrap;
+  }
+
+  .email-container:hover .email-text,
+  .email-container.show-text .email-text {
+    opacity: 1;
+  }
+
+  .copied-message {
+    position: absolute;
+    top: 110%;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #00ff00;
+    font-weight: bold;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    user-select: none;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .email-container.copied .copied-message {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  @media (max-width: 480px) {
+    .site-header {
+      flex-direction: column;
+      align-items: center;
+      padding: 1rem;
+      max-height: none;
+    }
+
+    .logo-container {
+      margin-bottom: 0.5rem;
+    }
+
+    .header-title {
+      font-size: clamp(1.5rem, 6vw, 2.5rem);
+      margin-bottom: 0.5rem;
+      order: 2;
+      text-align: center;
+      width: 100%;
+    }
+
+    .email-container {
+      order: 3;
+      margin-left: 0;
+    }
+
+    .email-text {
+      font-size: 1rem;
+      opacity: 1 !important;
+      margin-left: 8px;
+    }
+  }
+
+  .games-section {
+  padding: 60px 20px;
+  color: white;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  color: white;
+  margin-bottom: 40px;
+  font-family: 'Press Start 2P', monospace;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: normal;
+}
+
+.games-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+}
+
+.game-card {
+  background-color: black;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 10px #000;
+  transition: transform 0.3s ease;
+  max-width: 780px;
+  width: 100%;
+  padding-bottom: 20px;
+}
+
+.game-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 20px #0088ff;
+}
+
+.game-title {
+  margin: 20px 0 10px;
+  color: #ffffff;
+  font-weight: bold;
+  font-family: 'Press Start 2P', monospace;
+}
+
+.game-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.link-icons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.link-icons img {
+  width: 120px;
+  max-height: 50px;
+  object-fit: contain;
+  filter: brightness(0.9);
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.link-icons img:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .game-title {
+    font-size: 1.4rem;
+  }
+
+  .link-icons {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .link-icons img {
+    width: 80%;
+    max-width: 200px;
+  }
+}
+
+h4{
+  font-family: 'Press Start 2P', monospace;
+  color: white;
+  padding: 15px;
+}
+
+footer{
+    background-color: #131313;
+    height: 50px;
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="logo-container">
+    <img src="pixelvoices.png" alt="Pixel Voices Logo" class="logo" />
+  </div>
+  <h1 class="header-title"><span class="pix">PIXEL</span> VOICES</h1>
+  
+  <div class="email-container" id="emailContainer" title="Click to copy email">
+    <img src="https://pixelvoices.com/media/images/social/mail.png" alt="Email Icon" class="email-icon" />
+    <span class="email-text" id="emailText">contact@pixelvoices.com</span>
+    <div class="copied-message" id="copiedMessage">Copied!</div>
+  </div>
+</header>
+
+<section class="games-section">
+    <h2 class="section-title">GAMES</h2>
+    <div class="games-grid">
+      
+      <div class="game-card">
+        <h3 class="game-title">EVOWORLD.IO</h3>
+        <img src="https://pixelvoices.com/media/images/products/evoworld/main.jpg" alt="Game 1">
+        <div class="link-icons">
+          <a href="https://evoworld.io/" target="_blank">
+            <img src="https://pixelvoices.com/media/images/www.png" alt="website">
+          </a>
+          <a href="https://poki.com/en/g/flyordie-io" target="_blank">
+            <img src="https://pixelvoices.com/media/images/poki.png" alt="poki">
+          </a>
+        </div>
+      </div>
+  
+      <div class="game-card">
+        <h3 class="game-title">KING JUSTICE</h3>
+        <img src="https://pixelvoices.com/media/images/products/kingjustice/main.png" alt="Game 2">
+        <div class="link-icons">
+          <a href="https://play.google.com/store/apps/details?id=com.pixelvoices.kingjustice" target="_blank">
+            <img src="https://pixelvoices.com/media/images/android_download.png" alt="Play Store">
+          </a>
+          <a href="https://apps.apple.com/app/king-justice/id1613333523" target="_blank">
+            <img src="https://pixelvoices.com/media/images/ios_download.png" alt="appstore">
+          </a>
+        </div>
+      </div>
+  
+      <div class="game-card">
+        <h3 class="game-title">ZOMBIE RUNNER</h3>
+        <img src="https://pixelvoices.com/media/images/products/zombierunner/main.png" alt="Game 3">
+        <div class="link-icons">
+          <a href="https://play.google.com/store/apps/details?id=com.pixelvoices.zombierunner" target="_blank">
+            <img src="https://pixelvoices.com/media/images/android_download.png" alt="Play Store">
+          </a>
+        </div>
+      </div>
+  
+    </div>
+  </section> 
+
+<footer>
+  <h4 style="text-align: center;">Pixel Voices is a registered trademark</h4>
+</footer>
+<script>
+  const emailContainer = document.getElementById('emailContainer');
+  const copiedMessage = document.getElementById('copiedMessage');
+  const emailText = document.getElementById('emailText').textContent;
+
+  emailContainer.addEventListener('click', () => {
+    navigator.clipboard.writeText(emailText).then(() => {
+      emailContainer.classList.add('copied');
+      setTimeout(() => {
+        emailContainer.classList.remove('copied');
+      }, 2000);
+    }).catch(() => {
+      alert('Failed to copy email.');
+    });
+  });
+</script>
+
+</body>
+</html>

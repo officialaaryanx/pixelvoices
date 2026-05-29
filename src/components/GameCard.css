@@ -1,0 +1,182 @@
+.game-card {
+  background-color: black;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 10px #000;
+  transition: transform 0.38s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+  max-width: 780px;
+  width: 100%;
+  padding-bottom: 20px;
+  position: relative;
+  animation: cardRise 0.8s ease both;
+  will-change: transform, box-shadow;
+}
+
+.game-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 20px rgba(0, 136, 255, 0.85), 0 0 30px rgba(0, 136, 255, 0.25);
+}
+
+.game-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(0, 136, 255, 0.12), transparent 30%, rgba(0, 136, 255, 0.08));
+  opacity: 0;
+  transition: opacity 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.game-card:hover::before {
+  opacity: 1;
+}
+
+.game-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.game-title {
+  margin: 20px 0 10px;
+  color: #ffffff;
+  font-weight: bold;
+  font-family: 'Press Start 2P', monospace;
+}
+
+.game-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.link-icons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.link-icons img {
+  width: 120px;
+  max-height: 50px;
+  object-fit: contain;
+  filter: brightness(0.9);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), filter 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform, filter;
+}
+
+.link-icons a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,136,255,0.10);
+  border: 1.5px solid rgba(0,136,255,0.22);
+  border-radius: 12px;
+  padding: 10px 0 8px 0;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 240px;
+  box-shadow: 0 2px 12px rgba(0,136,255,0.08);
+  transition: background 0.22s, border 0.22s, box-shadow 0.22s, transform 0.22s;
+  animation: linkPulse 3.6s ease-in-out infinite;
+}
+
+.link-icons a:hover, .link-icons a:focus {
+  background: rgba(0,136,255,0.18);
+  border: 1.5px solid #0088ff;
+  box-shadow: 0 4px 18px rgba(0,136,255,0.18);
+  transform: translateY(-2px) scale(1.03);
+}
+
+.link-icons a:active {
+  background: rgba(0,136,255,0.28);
+  border: 1.5px solid #005fa3;
+  box-shadow: 0 2px 8px rgba(0,136,255,0.10);
+  transform: scale(0.98);
+}
+
+.link-icons img {
+  animation: none;
+}
+
+.link-icons img:hover {
+  transform: translateY(-2px) scale(1.03);
+  filter: brightness(1.1);
+}
+
+@keyframes cardRise {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px) scale(1);
+  }
+}
+
+@keyframes iconFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes linkPulse {
+  0%, 100% {
+    box-shadow: 0 2px 12px rgba(0, 136, 255, 0.08);
+    transform: translateY(0px);
+  }
+  50% {
+    box-shadow: 0 4px 18px rgba(0, 136, 255, 0.22);
+    transform: translateY(-2px);
+  }
+}
+
+@media (max-width: 900px) {
+  .game-card {
+    max-width: 100%;
+    border-radius: 12px;
+  }
+
+  .link-icons {
+    gap: 18px;
+  }
+
+  .link-icons img {
+    width: clamp(100px, 26vw, 160px);
+  }
+}
+
+@media (max-width: 600px) {
+  .game-card {
+    padding-bottom: 16px;
+  }
+
+  .game-title {
+    font-size: 1.2rem;
+    margin: 16px 0 10px;
+  }
+
+  .link-icons {
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+  }
+
+  .link-icons a {
+    width: 100%;
+    max-width: 260px;
+    min-width: 120px;
+    margin: 0 auto;
+  }
+
+  .link-icons img {
+    width: min(82%, 220px);
+    max-width: 220px;
+    min-width: 90px;
+  }
+}
