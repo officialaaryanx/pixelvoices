@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/pixelvoices/static/css/main.0d98a321.css",
+    "main.js": "/pixelvoices/static/js/main.817c9888.js",
+    "static/media/pixelvoices.png": "/pixelvoices/static/media/pixelvoices.3a89111f8113ad1d629c.png",
+    "index.html": "/pixelvoices/index.html",
+    "main.0d98a321.css.map": "/pixelvoices/static/css/main.0d98a321.css.map",
+    "main.817c9888.js.map": "/pixelvoices/static/js/main.817c9888.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0d98a321.css",
+    "static/js/main.817c9888.js"
+  ]
+}
