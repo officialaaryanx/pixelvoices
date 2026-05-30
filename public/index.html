@@ -8,6 +8,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 <body>
+  <script>
+    (function() {
+      var redirect = new URLSearchParams(window.location.search).get('redirect');
+      if (redirect) {
+        window.history.replaceState(null, '', redirect);
+      }
+    }());
+  </script>
   <div id="root"></div>
 </body>
 </html>
